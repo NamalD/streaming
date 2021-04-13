@@ -1,28 +1,35 @@
 import styles from '../styles/Home.module.css'
-import {useEffect, useState} from "react";
-import unrestrict from "../apis/realDebrid/unrestrict";
-import torrents from "../apis/realDebrid/torrents";
-import streaming from "../apis/realDebrid/streaming";
+import { useEffect, useState } from "react";
+import torrentClient, { Torrent } from "../apiClients/realDebrid/torrents";
+import { TorrentList } from "../components/torrents/TorrentList";
 
 export default function Home() {
+  const [torrents, setTorrents] = useState<Torrent[]>([]);
+
   useEffect(() => {
-    torrents.get().then(async response => {
-      const torrentId = response[0].id;
-      const unrestricted = await unrestrict.link(response[0].links[0]);
-
-      const transcode = await streaming.transcode(unrestricted.id);
-      console.log("transcode", transcode);
-
-      const mediaInfo = await streaming.mediaInfo(unrestricted.id);
-      console.log("media info", mediaInfo);
-
-    });
+    torrentClient.get().then(setTorrents);
   }, []);
 
+  /*
+  - Torrent list
+    - Torrent
+      - Link
+        - onClick => stream
+      - Link
+      - Link
+    - Torrent
+  - Add torrent
+    - Search for torrents
+      - Torrent
+        - onClick => add to downloads
+      - Torrent
+   */
   return (
     <div>
       <main>
         <h1 className={styles.title}>Streaming</h1>
+
+        <TorrentList torrents={torrents}/>
       </main>
     </div>
   )

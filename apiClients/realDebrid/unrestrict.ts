@@ -1,6 +1,6 @@
 import { buildUrl, fetchJsonWithAuth } from "./common";
 
-interface UnrestrictedLink {
+export interface UnrestrictedLink {
   id: string;
   filename: string;
   mimeType: string; // Mime Type of the file; guessed by the file extension
