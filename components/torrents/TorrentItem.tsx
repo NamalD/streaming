@@ -9,7 +9,7 @@ export interface TorrentParams {
 export function TorrentItem({torrent}: TorrentParams) {
   const [showLinks, setShowLinks] = useState(false);
 
-  const handleClick = () => setShowLinks(prev => !prev);
+  const handleClick = () => setShowLinks(prev => !prev)
 
   return (
     <>
