@@ -1,5 +1,5 @@
-// TODO: Make secret
-const TOKEN = "4MUZSDNVTG6P3PI5HYXBDK7T7XEBDEZITZN6S5PN2EGFHU2HKJUA";
+// TODO: Populate from env
+const TOKEN = "";
 const BASE_URL = "https://api.real-debrid.com/rest/1.0/";
 
 export function buildUrl(path: string, params?: Record<string, string>) {
